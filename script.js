@@ -2,11 +2,14 @@ const header = document.querySelector(".site-header");
 const menuButton = document.querySelector(".menu-button");
 const mobileNav = document.querySelector(".mobile-nav");
 
-window.addEventListener(
-  "scroll",
-  () => header.classList.toggle("scrolled", scrollY > 24),
-  { passive: true },
-);
+const hero = document.querySelector(".hero");
+function updateHeader() {
+  const heroEnd = hero.offsetTop + hero.offsetHeight - header.offsetHeight;
+  header.classList.toggle("scrolled", scrollY > heroEnd);
+}
+updateHeader();
+window.addEventListener("scroll", updateHeader, { passive: true });
+window.addEventListener("resize", updateHeader);
 menuButton.addEventListener("click", () => {
   const open = mobileNav.classList.toggle("open");
   menuButton.setAttribute("aria-expanded", open);
@@ -104,3 +107,31 @@ document
 document
   .querySelector(".review-next")
   .addEventListener("click", () => showReview(reviewIndex + 1));
+
+const parallaxSections = [...document.querySelectorAll(".parallax-section")];
+let parallaxQueued = false;
+function updateParallax() {
+  const viewportCenter = innerHeight / 2;
+  parallaxSections.forEach((section) => {
+    const rect = section.getBoundingClientRect();
+    const sectionCenter = rect.top + rect.height / 2;
+    const offset = Math.max(
+      -90,
+      Math.min(90, (viewportCenter - sectionCenter) * 0.12),
+    );
+    section.style.setProperty("--parallax-y", `${offset}px`);
+  });
+  parallaxQueued = false;
+}
+window.addEventListener(
+  "scroll",
+  () => {
+    if (!parallaxQueued) {
+      requestAnimationFrame(updateParallax);
+      parallaxQueued = true;
+    }
+  },
+  { passive: true },
+);
+window.addEventListener("resize", updateParallax);
+updateParallax();

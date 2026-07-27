@@ -1199,3 +1199,180 @@ body {
     display: none;
   }
 }
+
+/* Transparent hero navigation that becomes solid after the hero */
+.site-header {
+  color: white;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  transition:
+    height 0.38s ease,
+    color 0.38s ease,
+    background-color 0.38s ease,
+    border-color 0.38s ease,
+    box-shadow 0.38s ease,
+    backdrop-filter 0.38s ease;
+}
+.site-header .brand-mark {
+  color: var(--ink);
+  background: rgba(248, 207, 200, 0.92);
+}
+.site-header > .button {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.85);
+  background: rgba(20, 32, 34, 0.12);
+}
+.site-header > .button:hover {
+  color: var(--ink);
+  border-color: white;
+  background: white;
+}
+.site-header .menu-button {
+  color: white;
+}
+.site-header.scrolled {
+  color: var(--ink);
+  background: rgba(255, 250, 244, 0.94);
+  border-color: var(--line);
+  box-shadow: 0 8px 28px rgba(36, 49, 55, 0.08);
+  backdrop-filter: blur(14px);
+}
+.site-header.scrolled > .button {
+  color: var(--ink);
+  border-color: var(--ink);
+  background: transparent;
+}
+.site-header.scrolled > .button:hover {
+  color: white;
+  background: var(--ink);
+}
+.site-header.scrolled .menu-button {
+  color: var(--ink);
+}
+
+/* Aruba-inspired moving image section */
+.care.parallax-section {
+  position: relative;
+  isolation: isolate;
+  min-height: 880px;
+  color: white;
+  background-image: url("assets/nature-circle.jpg");
+  background-repeat: no-repeat;
+  background-position: center calc(50% + var(--parallax-y, 0px));
+  background-size: cover;
+  transition: background-position 0.08s linear;
+}
+.care.parallax-section::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(22, 35, 37, 0.5), rgba(22, 35, 37, 0.78)),
+    linear-gradient(90deg, rgba(22, 35, 37, 0.3), transparent 50%);
+}
+.care.parallax-section .section-heading {
+  max-width: 980px;
+  margin-inline: auto;
+  text-align: center;
+}
+.care.parallax-section .eyebrow,
+.care.parallax-section .display,
+.care.parallax-section .feature h3 {
+  color: white;
+}
+.care.parallax-section .feature-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top-color: rgba(255, 255, 255, 0.44);
+}
+.care.parallax-section .feature {
+  display: flex;
+  min-width: 0;
+  padding: 38px 24px;
+  flex-direction: column;
+  gap: 18px;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+  border-bottom: 0;
+}
+.care.parallax-section .feature:last-child {
+  border-right: 0;
+}
+.care.parallax-section .feature:hover {
+  padding-left: 24px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.care.parallax-section .feature > span {
+  order: 3;
+  opacity: 0.7;
+}
+.care.parallax-section .feature > div {
+  display: contents;
+}
+.care.parallax-section .feature h3 {
+  order: 1;
+  min-height: 2.2em;
+  font-size: clamp(1.55rem, 2.3vw, 2.6rem);
+}
+.care.parallax-section .feature p {
+  order: 2;
+  max-width: 290px;
+  margin-inline: auto;
+  color: white;
+  font-size: 0.95rem;
+}
+.care.parallax-section .feature > b {
+  order: 0;
+  width: 76px;
+  height: 76px;
+  margin-inline: auto;
+  color: var(--ink);
+  background: rgba(255, 250, 244, 0.94);
+}
+
+@media (max-width: 1050px) {
+  .care.parallax-section {
+    min-height: 980px;
+  }
+  .care.parallax-section .feature-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .care.parallax-section .feature {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  .care.parallax-section .feature:nth-child(2n) {
+    border-right: 0;
+  }
+}
+@media (max-width: 720px) {
+  .site-header {
+    color: white;
+  }
+  .site-header.scrolled {
+    color: var(--ink);
+  }
+  .care.parallax-section {
+    min-height: 0;
+    background-position: center;
+  }
+  .care.parallax-section .feature-list {
+    grid-template-columns: 1fr;
+  }
+  .care.parallax-section .feature,
+  .care.parallax-section .feature:nth-child(2n) {
+    padding: 30px 10px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  .care.parallax-section .feature:hover {
+    padding-left: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .care.parallax-section {
+    background-position: center;
+    transition: none;
+  }
+}
