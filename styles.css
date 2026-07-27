@@ -1376,3 +1376,103 @@ body {
     transition: none;
   }
 }
+
+/* Readable hero callout */
+.hero-note {
+  width: 250px;
+  height: 152px;
+  right: 3vw;
+  bottom: 7vh;
+  padding: 28px 34px;
+  border-radius: 76px 18px 76px 18px;
+  transform: rotate(2deg);
+}
+.hero-note .sun {
+  position: absolute;
+  top: 18px;
+  right: 25px;
+  font-size: 1.45rem;
+}
+.hero-note p {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.hero-note strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+/* Every daily moment has its own photo */
+.day-image {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 0.36s ease,
+    transform 0.5s ease;
+}
+.day-image.changing {
+  opacity: 0.18;
+  transform: scale(1.018);
+}
+
+/* Dense gallery avoids empty desktop gaps */
+.moments-grid {
+  grid-auto-flow: dense;
+  grid-auto-rows: 245px;
+}
+.moments-grid .moment:nth-child(6),
+.moments-grid .moment:nth-child(8) {
+  grid-row: span 2;
+}
+.moments-grid .moment:nth-child(9) {
+  grid-column: span 2;
+}
+
+@media (max-height: 850px) and (min-width: 721px) {
+  .hero-note {
+    width: 228px;
+    height: 132px;
+    bottom: 6vh;
+    padding: 21px 30px;
+  }
+  .hero-note .sun {
+    top: 12px;
+    right: 21px;
+    font-size: 1.2rem;
+  }
+  .hero-note p {
+    font-size: 0.82rem;
+  }
+  .hero-note strong {
+    font-size: 0.92rem;
+  }
+}
+@media (max-width: 720px) {
+  .hero-note {
+    width: 190px;
+    height: 108px;
+    right: 14px;
+    bottom: 18px;
+    padding: 18px 25px;
+    border-radius: 54px 14px 54px 14px;
+  }
+  .hero-note p {
+    font-size: 0.72rem;
+  }
+  .hero-note strong {
+    font-size: 0.8rem;
+  }
+  .moments-grid .moment:nth-child(6),
+  .moments-grid .moment:nth-child(8),
+  .moments-grid .moment:nth-child(9) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .day-image {
+    transition: none;
+  }
+}

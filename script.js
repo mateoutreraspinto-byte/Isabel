@@ -41,34 +41,47 @@ const moments = [
     "Morning",
     "Welcome & free play",
     "A personal hello, a quick family check-in and time to settle in with familiar toys and friends.",
+    "assets/happy-group.jpg",
+    "Children enjoying a happy morning together with Isabel",
   ],
   [
     "Morning",
     "A nourishing breakfast",
     "A balanced breakfast around the table, with simple Spanish words woven into conversation.",
+    "assets/learning-play.jpg",
+    "Children gathered together around an activity table",
   ],
   [
     "Mid-morning",
     "Learn through play",
     "Songs, stories, sensory activities, art and hands-on discovery in both English and Spanish.",
+    "assets/nature-play.jpg",
+    "Children learning and exploring together outdoors",
   ],
   [
     "Late morning",
     "Fresh air & movement",
     "A walk, a park visit or outdoor play whenever weather and conditions allow.",
+    "assets/park-day.jpg",
+    "Children enjoying a sunny outing at the park",
   ],
   [
     "Midday",
     "Lunch & peaceful rest",
     "A fresh, age-appropriate meal followed by a calm transition to naps or quiet activities.",
+    "assets/baby-care.jpg",
+    "A calm and caring moment with Isabel and the children",
   ],
   [
     "Afternoon",
     "Snack, connection & pick-up",
     "A nutritious snack, social play and a personal update for each family at the end of the day.",
+    "assets/isabel-with-children.jpg",
+    "Isabel smiling together with children at the end of their day",
   ],
 ];
 let dayIndex = 0;
+const dayImage = document.querySelector(".day-image");
 const dayCount = document.querySelector(".day-count");
 const dayTime = document.querySelector(".day-time");
 const dayTitle = document.querySelector(".day-card h3");
@@ -76,11 +89,17 @@ const dayDescription = document.querySelector(".day-description");
 const dayTabs = [...document.querySelectorAll(".day-tabs button")];
 function showMoment(index) {
   dayIndex = (index + moments.length) % moments.length;
-  const [time, title, description] = moments[dayIndex];
+  const [time, title, description, image, imageAlt] = moments[dayIndex];
   dayCount.textContent = `${String(dayIndex + 1).padStart(2, "0")} / 06`;
   dayTime.textContent = time;
   dayTitle.textContent = title;
   dayDescription.textContent = description;
+  dayImage.classList.add("changing");
+  window.setTimeout(() => {
+    dayImage.src = image;
+    dayImage.alt = imageAlt;
+    dayImage.classList.remove("changing");
+  }, 180);
   dayTabs.forEach((tab, i) => tab.classList.toggle("active", i === dayIndex));
 }
 document
