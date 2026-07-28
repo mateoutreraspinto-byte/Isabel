@@ -6,6 +6,9 @@
   --sky: #cfe7f2;
   --mint: #cfe7d7;
   --lavender: #ded8ef;
+  --butter: #f6e8ad;
+  --blush: #f8d5df;
+  --aqua: #ccebea;
   --rose: #e36e79;
   --blue: #376c7d;
   --line: rgba(36, 49, 55, 0.18);
@@ -316,10 +319,32 @@ button {
   border-top: 1px solid var(--line);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding-top: 14px;
 }
 .trust-strip span {
-  padding: 25px 24px 10px 0;
+  padding: 25px 24px;
   font-size: 0.68rem;
+  border-radius: 22px 22px 4px 22px;
+  transition:
+    transform 0.3s ease,
+    border-radius 0.3s ease;
+}
+.trust-strip span:hover {
+  transform: translateY(-4px);
+  border-radius: 4px 22px 22px 22px;
+}
+.trust-strip span:nth-child(1) {
+  background: var(--blush);
+}
+.trust-strip span:nth-child(2) {
+  background: var(--butter);
+}
+.trust-strip span:nth-child(3) {
+  background: var(--aqua);
+}
+.trust-strip span:nth-child(4) {
+  background: var(--lavender);
 }
 .trust-strip b {
   display: block;
@@ -332,6 +357,25 @@ button {
   grid-template-columns: 53% 39%;
   gap: 8%;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--paper) 0 72%, #fff3c9 72% 100%);
+}
+.story::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  right: -110px;
+  top: 70px;
+  border-radius: 50%;
+  background: var(--aqua);
+  opacity: 0.58;
+  pointer-events: none;
+}
+.story > * {
+  position: relative;
+  z-index: 1;
 }
 .story-photo {
   position: relative;
@@ -339,6 +383,7 @@ button {
 .story-photo img {
   height: min(74vw, 780px);
   border-radius: 2px 160px 2px 2px;
+  object-position: center 30%;
 }
 .photo-label {
   position: absolute;
@@ -413,9 +458,26 @@ button {
   place-items: center;
   font-size: 1rem;
 }
+.feature:nth-child(1) > b {
+  background: var(--blush);
+}
+.feature:nth-child(2) > b {
+  background: var(--butter);
+}
+.feature:nth-child(3) > b {
+  background: var(--aqua);
+}
+.feature:nth-child(4) > b {
+  background: var(--lavender);
+}
 .day {
   padding: 145px 6vw;
-  background: var(--paper);
+  background: linear-gradient(
+    180deg,
+    #f7f2ff 0%,
+    var(--paper) 48%,
+    #eefafa 100%
+  );
 }
 .day-heading {
   display: grid;
@@ -480,7 +542,7 @@ button {
 }
 .day-tabs button {
   border: 0;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.64);
   padding: 22px 5px;
   border-bottom: 3px solid transparent;
   cursor: pointer;
@@ -490,6 +552,7 @@ button {
 .day-tabs button.active {
   border-color: var(--rose);
   color: var(--rose);
+  background: var(--blush);
 }
 .nutrition {
   padding: 125px 8vw;
@@ -971,7 +1034,11 @@ body {
 }
 .moments {
   padding: 130px 5vw;
-  background: var(--cream);
+  background:
+    radial-gradient(circle at 7% 12%, var(--butter) 0 80px, transparent 81px),
+    radial-gradient(circle at 94% 88%, var(--blush) 0 110px, transparent 111px),
+    var(--cream);
+  position: relative;
 }
 .moments-heading {
   display: grid;
@@ -994,7 +1061,13 @@ body {
   position: relative;
   margin: 0;
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: 6px 38px 6px 6px;
+}
+.moment:nth-child(3n + 2) {
+  border-radius: 38px 6px 6px 6px;
+}
+.moment:nth-child(3n) {
+  border-radius: 6px 6px 38px 6px;
 }
 .moment-wide {
   grid-column: span 2;
